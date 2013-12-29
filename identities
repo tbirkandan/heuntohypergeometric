@@ -1,0 +1,43 @@
+reset()
+# Define the variables:
+d1,q1,a1,b1,Gamma1,Delta1,z1=var('d1,q1,a1,b1,Gamma1,Delta1,z1')
+q,a,b,Gamma,Delta,z=var('q,a,b,Gamma,Delta,z')
+
+# The values:
+d1,q1,a1,b1,Gamma1,Delta1,z1 = -1,q,a,b,Gamma,Delta,z
+
+oldvars=[d1,q1,a1,b1,Gamma1,Delta1,z1]
+
+def iden1(oldvars):
+    newvars=[]
+    newvars.append(oldvars[0]/(oldvars[0]-1))
+    newvars.append((oldvars[1]+oldvars[2]*oldvars[0]*oldvars[4])/(oldvars[0]-1))
+    newvars.append(oldvars[2])
+    newvars.append(oldvars[2]-oldvars[5]+1)
+    newvars.append(oldvars[4])
+    newvars.append(oldvars[2]+oldvars[3]+1)
+    newvars.append(oldvars[6]/(oldvars[6]-1).simplify_full())
+    return newvars
+
+def iden2(oldvars):
+    newvars=[]
+    newvars.append(1/oldvars[0])
+    newvars.append(oldvars[1]/oldvars[0])
+    newvars.append(oldvars[2])
+    newvars.append(oldvars[3])
+    newvars.append(oldvars[4])
+    newvars.append(oldvars[2]+oldvars[3]-oldvars[4]-oldvars[5]+1)
+    newvars.append((oldvars[6]/oldvars[0]).simplify_full())
+    return newvars
+
+# Do the calculation:
+newvars=iden2(iden1(oldvars))
+
+# Print the result:
+writeresult='H( %s, %s; %s, %s, %s, %s; %s) \
+=H( %s, %s; %s, %s, %s, %s; %s)'%(latex(d1),latex(q1),latex(a1),latex(b1)
+                                  ,latex(Gamma1),latex(Delta1),latex(z1)
+                                  ,latex(newvars[0]),latex(newvars[1])
+                                  ,latex(newvars[2]),latex(newvars[3])
+                                  ,latex(newvars[4]),latex(newvars[5]),latex(newvars[6]))
+show(writeresult)
