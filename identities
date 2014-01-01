@@ -1,13 +1,18 @@
+#####################
+# This SAGE code (http://www.sagemath.org/)
+# is written by Tolga Birkandan as an appendix to the article:
+# "Physical Examples of the Heun-to-Hypergeometric Reduction"
+#
+# iden1 : The identity given by the equation (3.4.11) of Ronveaux's book
+# iden2 : The identity given by the equation (3.4.3) of Ronveaux's book
+#####################
 reset()
 # Define the variables:
 d1,q1,a1,b1,Gamma1,Delta1,z1=var('d1,q1,a1,b1,Gamma1,Delta1,z1')
 q,a,b,Gamma,Delta,z=var('q,a,b,Gamma,Delta,z')
-
 # The values:
 d1,q1,a1,b1,Gamma1,Delta1,z1 = -1,q,a,b,Gamma,Delta,z
-
 oldvars=[d1,q1,a1,b1,Gamma1,Delta1,z1]
-
 def iden1(oldvars):
     newvars=[]
     newvars.append(oldvars[0]/(oldvars[0]-1))
@@ -18,7 +23,6 @@ def iden1(oldvars):
     newvars.append(oldvars[2]+oldvars[3]+1)
     newvars.append(oldvars[6]/(oldvars[6]-1).simplify_full())
     return newvars
-
 def iden2(oldvars):
     newvars=[]
     newvars.append(1/oldvars[0])
@@ -29,10 +33,13 @@ def iden2(oldvars):
     newvars.append(oldvars[2]+oldvars[3]-oldvars[4]-oldvars[5]+1)
     newvars.append((oldvars[6]/oldvars[0]).simplify_full())
     return newvars
-
 # Do the calculation:
+# This is how you apply the first identity:
+newvars=iden1(oldvars)
+# This is how you apply the second identity:
+newvars=iden2(oldvars)
+# You can also apply the identities successively:
 newvars=iden2(iden1(oldvars))
-
 # Print the result:
 writeresult='H( %s, %s; %s, %s, %s, %s; %s) \
 =H( %s, %s; %s, %s, %s, %s; %s)'%(latex(d1),latex(q1),latex(a1),latex(b1)
