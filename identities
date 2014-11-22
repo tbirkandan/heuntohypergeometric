@@ -1,28 +1,32 @@
-#####################
+###########################################################################
 # This SAGE code (http://www.sagemath.org/)
 # is written by Tolga Birkandan as an appendix to the article:
-# "Physical Examples of the Heun-to-Hypergeometric Reduction"
+# "Physical Examples of the Heun-to-Hypergeometric Reduction",
+# arXiv:1401.0449 [math-ph].
 #
-# iden1 : The identity given by the equation (3.4.11) of Ronveaux's book
-# iden2 : The identity given by the equation (3.4.3) of Ronveaux's book
-#####################
+# See Table 2 of R. S. Maier, "The 192 Solutions of the Heun Equation",
+# Math. Comp. 76 (2007), 811-843, arXiv:math/0408317
+# (line 5 & line 9 respectively) for the identities.
+###########################################################################
 reset()
-# Define the variables:
-d1,q1,a1,b1,Gamma1,Delta1,z1=var('d1,q1,a1,b1,Gamma1,Delta1,z1')
-q,a,b,Gamma,Delta,z=var('q,a,b,Gamma,Delta,z')
-# The values:
-d1,q1,a1,b1,Gamma1,Delta1,z1 = -1,q,a,b,Gamma,Delta,z
-oldvars=[d1,q1,a1,b1,Gamma1,Delta1,z1]
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 def iden1(oldvars):
     newvars=[]
     newvars.append(oldvars[0]/(oldvars[0]-1))
-    newvars.append((oldvars[1]+oldvars[2]*oldvars[0]*oldvars[4])/(oldvars[0]-1))
+    newvars.append((-oldvars[1]+oldvars[2]*oldvars[0]*oldvars[4])/(oldvars[0]-1))
     newvars.append(oldvars[2])
     newvars.append(oldvars[2]-oldvars[5]+1)
     newvars.append(oldvars[4])
-    newvars.append(oldvars[2]+oldvars[3]+1)
+    newvars.append(oldvars[2]-oldvars[3]+1)
     newvars.append(oldvars[6]/(oldvars[6]-1).simplify_full())
-    return newvars
+    writeresult='H( %s, %s; %s, %s, %s, %s; %s) \
+    =(1 - %s )^{-%s} H( %s, %s; %s, %s, %s, %s; %s)'%(latex(d1),latex(q1),latex(a1),latex(b1)
+                                  ,latex(Gamma1),latex(Delta1),latex(z1),latex(z1), latex(a1)
+                                  ,latex(newvars[0]),latex(newvars[1])
+                                  ,latex(newvars[2]),latex(newvars[3])
+                                  ,latex(newvars[4]),latex(newvars[5]),latex(newvars[6]))
+    show(writeresult)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 def iden2(oldvars):
     newvars=[]
     newvars.append(1/oldvars[0])
@@ -32,19 +36,30 @@ def iden2(oldvars):
     newvars.append(oldvars[4])
     newvars.append(oldvars[2]+oldvars[3]-oldvars[4]-oldvars[5]+1)
     newvars.append((oldvars[6]/oldvars[0]).simplify_full())
-    return newvars
-# Do the calculation:
-# This is how you apply the first identity:
-newvars=iden1(oldvars)
-# This is how you apply the second identity:
-newvars=iden2(oldvars)
-# You can also apply the identities successively:
-newvars=iden2(iden1(oldvars))
-# Print the result:
-writeresult='H( %s, %s; %s, %s, %s, %s; %s) \
-=H( %s, %s; %s, %s, %s, %s; %s)'%(latex(d1),latex(q1),latex(a1),latex(b1)
+    writeresult='H( %s, %s; %s, %s, %s, %s; %s) \
+    =H( %s, %s; %s, %s, %s, %s; %s)'%(latex(d1),latex(q1),latex(a1),latex(b1)
                                   ,latex(Gamma1),latex(Delta1),latex(z1)
                                   ,latex(newvars[0]),latex(newvars[1])
                                   ,latex(newvars[2]),latex(newvars[3])
                                   ,latex(newvars[4]),latex(newvars[5]),latex(newvars[6]))
-show(writeresult)
+    show(writeresult)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Define the variables:
+# The user should define new variables if necessary
+d1,q1,a1,b1,Gamma1,Delta1,z1=var('d1,q1,a1,b1,Gamma1,Delta1,z1')
+d,q,a,b,Gamma,Delta,z=var('d,q,a,b,Gamma,Delta,z')
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# The user should change this part.
+# Enter your parameters here: 
+d1,q1,a1,b1,Gamma1,Delta1,z1 = d,q,a,b,Gamma,Delta,z
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+oldvars=[d1,q1,a1,b1,Gamma1,Delta1,z1]
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# Do the calculation:
+
+# This is how you apply the first identity:
+iden1(oldvars)
+
+# This is how you apply the second identity:
+#iden2(oldvars)
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
