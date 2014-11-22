@@ -1,4 +1,4 @@
-This SAGE code (http://www.sagemath.org/) is written by Tolga Birkandan as an appendix to the article:
+This SAGE code is written by Tolga Birkandan as an appendix to the article:
 
 "Physical Examples of the Heun-to-Hypergeometric Reduction", arXiv:1401.0449 [math-ph].
 
