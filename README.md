@@ -1,14 +1,10 @@
-This small SAGE code can be used to apply the Heun identities given in Ronveaux's book:
+This SAGE code (http://www.sagemath.org/) is written by Tolga Birkandan as an appendix to the article:
 
-A. Ronveaux (ed.), "Heun's Differential Equations", Oxford University Press (1995)
+"Physical Examples of the Heun-to-Hypergeometric Reduction", arXiv:1401.0449 [math-ph].
 
-
-iden1 : The identity given by the equation (3.4.11) of Ronveaux's book
-
-iden2 : The identity given by the equation (3.4.3) of Ronveaux's book
+See Table 2 of R. S. Maier, "The 192 Solutions of the Heun Equation", Math. Comp. 76 (2007), 811-843, arXiv:math/0408317 (line 5 & line 9 respectively) for the identities.
 
 You can either download and install SAGE:
-
 http://www.sagemath.org/
 
 or use it via SAGE Cloud:
